@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://nbcbqwvtysq8" path="res://assets/environment/props/clouds/Clouds_06.png" id="13_rbmsw"]
 [ext_resource type="Texture2D" uid="uid://8dlrx3g4ju3c" path="res://assets/environment/props/clouds/Clouds_07.png" id="14_3plql"]
 [ext_resource type="Texture2D" uid="uid://ca7yc4g1k2jpv" path="res://assets/environment/props/clouds/Clouds_08.png" id="15_il8qb"]
+[ext_resource type="PackedScene" uid="uid://dyhtuvbgba6jx" path="res://scenes/entities/enemies/enemies.tscn" id="17_r6tr0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2s55i"]
 texture = ExtResource("1_ybdod")
@@ -439,3 +440,12 @@ tile_set = SubResource("TileSet_lk7yb")
 
 [node name="Player" parent="." unique_id=2036582661 instance=ExtResource("13_l4ftj")]
 position = Vector2(569, 567)
+
+[node name="Enemies" type="Node2D" parent="." unique_id=1070248581]
+y_sort_enabled = true
+
+[node name="Enemy" parent="Enemies" unique_id=1689854096 instance=ExtResource("17_r6tr0")]
+position = Vector2(1035, 436)
+
+[node name="Effects" type="Node2D" parent="." unique_id=626981199]
+unique_name_in_owner = true
