@@ -28,6 +28,10 @@ window/size/viewport_height=900
 
 enabled=PackedStringArray("res://addons/git_bash_here/plugin.cfg", "res://addons/script-ide/plugin.cfg")
 
+[global_group]
+
+player=""
+
 [input]
 
 left={
@@ -56,6 +60,10 @@ down={
 2d_physics/layer_1="Environment"
 2d_physics/layer_5="enemy_damage"
 2d_physics/layer_6="player_damage"
+
+[plugins]
+
+git_bash_here/shortcut=Resource("uid://df2ve8i42uprp", "res://addons/git_bash_here/git_bash_here_shortcut.tres")
 
 [rendering]
 
