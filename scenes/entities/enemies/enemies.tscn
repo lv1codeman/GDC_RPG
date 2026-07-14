@@ -357,6 +357,8 @@ height = 76.0
 size = Vector2(12, 49.5)
 
 [node name="Enemy" type="CharacterBody2D" unique_id=2036582661]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_sn6qe")
 death_packed = ExtResource("2_tfdsr")
 
@@ -381,6 +383,16 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/attack/BlendSpace2D/blend_position = Vector2(0, 0)
 parameters/attack/TimeScale/scale = 1.0
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=814103579]
+path_postprocessing = 1
+avoidance_enabled = true
+radius = 48.0
+neighbor_distance = 128.0
+max_speed = 128.0
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(1, 0, 0, 1)
+
 [node name="HurtBox" type="Area2D" parent="." unique_id=546507918]
 collision_layer = 16
 collision_mask = 0
@@ -401,4 +413,5 @@ monitorable = false
 position = Vector2(0, -25.25)
 shape = SubResource("RectangleShape2D_tfdsr")
 
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]

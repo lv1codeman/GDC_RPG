@@ -24,6 +24,8 @@ var state: State = State.IDLE
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var animation_playback: AnimationNodeStateMachinePlayback = $AnimationTree["parameters/playback"]
 @onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
+@onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
+
 
 func _ready() -> void:
 	animation_tree.set_active(true)
@@ -50,7 +52,31 @@ func distance_to_player() -> float:
 	return global_position.distance_to(player.global_position)
 
 func move() -> void:
-	pass
+	if state == State.CHASE:
+		nav_agent.target_position = player.global_position
+	elif state == State.RETURN:
+		nav_agent.target_position = spawn_point
+	var next_path_position: Vector2 = nav_agent.get_next_path_position()
+	velocity = global_position.direction_to(next_path_position) * speed
+	
+	if nav_agent.avoidance_enabled:
+		nav_agent.set_velocity(velocity)
+	else:
+		_on_navigation_agent_2d_velocity_computed(velocity)
+	move_and_slide()
+	
+	if state == State.IDLE or State.CHASE:
+		if velocity.x < -0.01:
+			$Sprite2D.flip_h = true
+		elif velocity.x > 0.01:
+			$Sprite2D.flip_h = false
+			
+	update_animation()
+
+
+func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
+	nav_agent.velocity = safe_velocity
+
 
 func update_animation() -> void:
 	match state:
