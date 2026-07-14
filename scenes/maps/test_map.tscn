@@ -470,5 +470,14 @@ y_sort_enabled = true
 [node name="Enemy" parent="Enemies" unique_id=1689854096 instance=ExtResource("17_r6tr0")]
 position = Vector2(1035, 436)
 
+[node name="Enemy2" parent="Enemies" unique_id=1618457657 instance=ExtResource("17_r6tr0")]
+position = Vector2(931, 374)
+
+[node name="Enemy3" parent="Enemies" unique_id=93471284 instance=ExtResource("17_r6tr0")]
+position = Vector2(1190, 211)
+
+[node name="Enemy4" parent="Enemies" unique_id=1133916088 instance=ExtResource("17_r6tr0")]
+position = Vector2(1210, 326)
+
 [node name="Effects" type="Node2D" parent="." unique_id=626981199]
 unique_name_in_owner = true

@@ -15,14 +15,23 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="GDC_RPG"
-run/main_scene="uid://bceih12urie7y"
+run/main_scene="uid://cd7ik3uoh387h"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+PlayerData="*uid://cu1weo1kqi3su"
+LevelData="*uid://i1mcsdfse2yv"
 
 [display]
 
 window/size/viewport_width=1600
 window/size/viewport_height=900
+window/size/initial_position_type=0
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/subwindows/embed_subwindows=false
 
 [editor_plugins]
 
@@ -31,6 +40,7 @@ enabled=PackedStringArray("res://addons/git_bash_here/plugin.cfg", "res://addons
 [global_group]
 
 player=""
+enemies=""
 
 [input]
 
@@ -64,4 +74,5 @@ down={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-renderer/rendering_method="mobile"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

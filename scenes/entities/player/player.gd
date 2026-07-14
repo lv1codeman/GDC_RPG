@@ -9,12 +9,12 @@ enum State {
 
 @export_category("Stats")
 @export var speed: int = 400
-@export var attack_speed: float = 0.6
 @export var attack_damage: int = 60
 @export var hitpoints: int = 150
 
 var state: State = State.IDLE
 var move_direction: Vector2 = Vector2(0,0)
+var attack_speed: float
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var animation_tree: AnimationTree = $AnimationTree
@@ -22,6 +22,7 @@ var move_direction: Vector2 = Vector2(0,0)
 
 func _ready() -> void:
 	animation_tree.set_active(true)
+	calculate_stats()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
@@ -30,6 +31,13 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(_delta: float) -> void:
 	if not state == State.ATTACK:
 		movement_loop()
+
+
+func calculate_stats() -> void:
+	attack_speed = Equations.calculate_attack_speed()
+	var time_factor: float = Equations.BASE_ATTACK_SPEED / attack_speed
+	animation_tree.set("parameters/attack/TimeScale/scale", time_factor)
+	print("player attack speed: %s" % attack_speed)
 
 func movement_loop() -> void:
 	move_direction.x = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
@@ -79,11 +87,12 @@ func attack() -> void:
 
 func take_damage(damage_taken: int) -> void:
 	hitpoints -= damage_taken
+	print("Player got hurt, damage %s taken, %s hp remains." % [damage_taken, hitpoints])
 	if hitpoints <= 0:
 		death()
 		
 func death() -> void:
-	print("I die.")
+	print("You die.")
 
 
 	
