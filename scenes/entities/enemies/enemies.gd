@@ -47,18 +47,32 @@ func _physics_process(delta: float) -> void:
 		update_animation()
 
 func distance_to_player() -> float:
-	var distance: float
-	return distance
+	return global_position.distance_to(player.global_position)
 
 func move() -> void:
 	pass
 
 func update_animation() -> void:
-	pass
+	match state:
+		State.IDLE:
+			animation_playback.travel("idle")
+		State.CHASE:
+			animation_playback.travel("run")
+		State.RETURN:
+			animation_playback.travel("run")
+		State.ATTACK:
+			animation_playback.travel("attack")
 
 func attack() -> void:
-	pass
-
+	var player_pos: Vector2 = player.global_position
+	var attack_dir: Vector2 = (player_pos - global_position).normalized()
+	$Sprite2D.flip_h = attack_dir.x < 0 and abs(attack_dir.x) >= abs(attack_dir.y)
+	animation_tree.set("parameters/attack/BlendSpace2D/blend_position", attack_dir)
+	update_animation()
+	
+	await get_tree().create_timer(attack_speed).timeout
+	state = State.IDLE
+	
 func take_damage(damage_taken: int) -> void:
 	hitpoints -= damage_taken
 	if hitpoints <= 0:
@@ -69,3 +83,7 @@ func death() -> void:
 	death_scene.position = global_position + Vector2(0.0,-32.0)
 	%Effects.add_child(death_scene)
 	queue_free()
+
+
+func _on_hit_box_area_entered(area: Area2D) -> void:
+	area.owner.take_damage(attack_damage)

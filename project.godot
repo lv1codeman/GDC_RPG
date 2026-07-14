@@ -61,10 +61,6 @@ down={
 2d_physics/layer_5="enemy_damage"
 2d_physics/layer_6="player_damage"
 
-[plugins]
-
-git_bash_here/shortcut=Resource("uid://df2ve8i42uprp", "res://addons/git_bash_here/git_bash_here_shortcut.tres")
-
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
