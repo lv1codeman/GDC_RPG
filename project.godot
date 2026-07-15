@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="GDC_RPG"
-run/main_scene="uid://cd7ik3uoh387h"
+run/main_scene="uid://cqn2c5fjpqvj3"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 
@@ -29,8 +29,6 @@ LevelData="*uid://i1mcsdfse2yv"
 window/size/viewport_width=1600
 window/size/viewport_height=900
 window/size/initial_position_type=0
-window/size/window_width_override=1280
-window/size/window_height_override=720
 window/subwindows/embed_subwindows=false
 
 [editor_plugins]

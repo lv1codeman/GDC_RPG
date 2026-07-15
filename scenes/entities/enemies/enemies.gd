@@ -52,7 +52,9 @@ func _physics_process(delta: float) -> void:
 		update_animation()
 
 func distance_to_player() -> float:
-	return global_position.distance_to(player.global_position)
+	if is_instance_valid(player):
+		return global_position.distance_to(player.global_position)
+	return INF
 
 func move() -> void:
 	if state == State.CHASE:

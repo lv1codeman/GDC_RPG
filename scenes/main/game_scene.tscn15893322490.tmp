@@ -59,8 +59,7 @@ offset_right = 244.0
 offset_bottom = 252.0
 texture = ExtResource("5_o41ig")
 
-[node name="CurrentLevel" type="Label" parent="UI/HUD/LevelIndicator" unique_id=204281595]
-unique_name_in_owner = true
+[node name="Label" type="Label" parent="UI/HUD/LevelIndicator" unique_id=204281595]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 1
 anchors_preset = 15
